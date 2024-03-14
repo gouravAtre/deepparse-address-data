@@ -8,10 +8,12 @@ from random import shuffle
 
 def main(args):
     files = list(os.walk(args.files_directory))[0][2]
+    print("FILES::",files)
 
     datasets = dict()
 
     for dataset in files:
+        
         loaded_data = load(open(os.path.join(args.files_directory, f'./{dataset}'), 'rb'))
 
         datasets[dataset.replace('.p', '')] = loaded_data
@@ -30,7 +32,7 @@ def main(args):
                 continue
 
             global_list.append(pair)
-
+    
     dump(global_list, open(os.path.join(args.saving_path, f"{args.file_name}.p"), 'wb'))
 
 
